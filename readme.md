@@ -5,9 +5,9 @@
 A lightweight YouTube client designed specifically for <b>Windows XP</b>.
 </p><p align="center">
 Search, browse trending videos, and play them using your system's media player.
-</p>---
+</p>
 
-About the Project
+# About the Project
 
 TubeXP is a lightweight YouTube browsing application built for Windows XP systems. Modern browsers and official YouTube applications no longer support XP properly, making it difficult to browse or watch videos on older machines.
 
@@ -19,9 +19,9 @@ This project aims to restore basic YouTube functionality to legacy computers by 
 
 The program is intentionally lightweight and compatible with older hardware.
 
----
 
-Features
+
+# Features
 
 • Fast YouTube search
 • Trending videos on startup
@@ -31,13 +31,13 @@ Features
 • Minimal dependencies
 • API key stored locally after first run
 
----
+
 
  
 
----
 
-Technology Stack
+
+# Technology Stack
 
 TubeXP uses a very simple stack to maintain compatibility with Windows XP.
 
@@ -49,9 +49,9 @@ API| YouTube Data API v3
 Video Extraction| yt-dlp
 Playback| Windows Media Player
 
----
 
-Requirements
+
+# Requirements
 
 Minimum requirements:
 
@@ -65,29 +65,11 @@ Optional but recommended:
 - Updated root certificates
 - TLS 1.2 enabled
 
----
 
-Project Structure
 
-Example structure:
 
-TubeXP
-│
-├── MainForm.vb
-├── YoutubeAPI.vb
-├── YtDlpWrapper.vb
-├── TubeXP.sln
-│
-├── dependencies
-│   └── yt-dlp.exe
-│
-├── screenshots
-│
-└── README.md
 
----
-
-Building the Project
+# Building the Project
 
 1. Install Visual Studio 2010–2015 (XP compatible).
 
@@ -112,9 +94,8 @@ The executable will appear in:
 
 bin/Release/
 
----
 
-Running the Application
+# Running the Application
 
 Simply run:
 
@@ -122,9 +103,9 @@ TubeXP.exe
 
 On first launch the application will ask for a YouTube API key.
 
----
 
-Getting a YouTube API Key
+
+# Getting a YouTube API Key
 
 1. Go to Google Cloud Console:
 
@@ -150,9 +131,9 @@ Create Credentials → API Key
 
 The key will be stored locally for future use.
 
----
 
-How TubeXP Works
+
+# How TubeXP Works
 
 The workflow is simple:
 
@@ -165,9 +146,9 @@ The workflow is simple:
 
 This design keeps the application lightweight and compatible with older systems.
 
----
 
-Configuration
+
+# Configuration
 
 The API key is saved locally inside the application directory.
 
@@ -177,9 +158,9 @@ apikey.txt
 
 You can delete this file to enter a new key.
 
----
 
-Limitations
+
+# Limitations
 
 Because this program targets legacy systems:
 
@@ -188,9 +169,9 @@ Because this program targets legacy systems:
 • Basic search only
 • Depends on yt-dlp updates
 
----
 
-Roadmap
+
+# Roadmap
 
 Possible improvements:
 
@@ -201,9 +182,9 @@ Possible improvements:
 - Channel browsing
 - Better UI
 
----
 
-Contributing
+
+# Contributing
 
 Contributions are welcome.
 
@@ -214,17 +195,17 @@ You can help by:
 - Adding new features
 - Improving compatibility with legacy systems
 
----
 
-License
+
+# License
 
 This project is licensed under the MIT License.
 
 You are free to use, modify, and distribute this software.
 
----
 
-Credits
+
+# Credits
 
 - YouTube Data API
 - yt-dlp developers
