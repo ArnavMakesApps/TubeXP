@@ -22,17 +22,16 @@ Partial Class MainForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.pnlRoot = New System.Windows.Forms.Panel()
         Me.pnlPage = New System.Windows.Forms.Panel()
         Me.pnlMain = New System.Windows.Forms.Panel()
         Me.pnlContent = New System.Windows.Forms.Panel()
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.flpVideos = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.pnlSidebar = New System.Windows.Forms.Panel()
         Me.pnlSidebarMenu = New System.Windows.Forms.Panel()
         Me.lblSettings = New System.Windows.Forms.Label()
-        Me.lblDownloads = New System.Windows.Forms.Label()
-        Me.lblHistory = New System.Windows.Forms.Label()
         Me.lblGaming = New System.Windows.Forms.Label()
         Me.lblMusic = New System.Windows.Forms.Label()
         Me.lblTrending = New System.Windows.Forms.Label()
@@ -42,7 +41,6 @@ Partial Class MainForm
         Me.pnlSidebarTopSpacer = New System.Windows.Forms.Panel()
         Me.pnlHeader = New System.Windows.Forms.Panel()
         Me.pnlHeaderDivider = New System.Windows.Forms.Panel()
-        Me.lblSignIn = New System.Windows.Forms.Label()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -50,7 +48,7 @@ Partial Class MainForm
         Me.pnlPage.SuspendLayout()
         Me.pnlMain.SuspendLayout()
         Me.pnlContent.SuspendLayout()
-        Me.Panel1.SuspendLayout()
+        Me.pnlSidebar.SuspendLayout()
         Me.pnlSidebarMenu.SuspendLayout()
         Me.pnlSidebarHeader.SuspendLayout()
         Me.pnlHeader.SuspendLayout()
@@ -69,25 +67,24 @@ Partial Class MainForm
         '
         'pnlPage
         '
-        Me.pnlPage.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.pnlPage.BackColor = System.Drawing.Color.White
-        Me.pnlPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlPage.Controls.Add(Me.pnlMain)
         Me.pnlPage.Controls.Add(Me.pnlHeader)
+        Me.pnlPage.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlPage.Location = New System.Drawing.Point(0, 0)
         Me.pnlPage.Name = "pnlPage"
-        Me.pnlPage.Size = New System.Drawing.Size(960, 580)
+        Me.pnlPage.Size = New System.Drawing.Size(972, 606)
         Me.pnlPage.TabIndex = 0
         '
         'pnlMain
         '
         Me.pnlMain.BackColor = System.Drawing.Color.White
         Me.pnlMain.Controls.Add(Me.pnlContent)
-        Me.pnlMain.Controls.Add(Me.Panel1)
+        Me.pnlMain.Controls.Add(Me.pnlSidebar)
         Me.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlMain.Location = New System.Drawing.Point(0, 70)
         Me.pnlMain.Name = "pnlMain"
-        Me.pnlMain.Size = New System.Drawing.Size(958, 508)
+        Me.pnlMain.Size = New System.Drawing.Size(972, 536)
         Me.pnlMain.TabIndex = 1
         '
         'pnlContent
@@ -96,9 +93,9 @@ Partial Class MainForm
         Me.pnlContent.Controls.Add(Me.lblStatus)
         Me.pnlContent.Controls.Add(Me.flpVideos)
         Me.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlContent.Location = New System.Drawing.Point(0, 0)
+        Me.pnlContent.Location = New System.Drawing.Point(180, 0)
         Me.pnlContent.Name = "pnlContent"
-        Me.pnlContent.Size = New System.Drawing.Size(958, 508)
+        Me.pnlContent.Size = New System.Drawing.Size(792, 536)
         Me.pnlContent.TabIndex = 1
         '
         'lblStatus
@@ -106,37 +103,35 @@ Partial Class MainForm
         Me.lblStatus.Dock = System.Windows.Forms.DockStyle.Top
         Me.lblStatus.Location = New System.Drawing.Point(0, 0)
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(958, 13)
+        Me.lblStatus.Size = New System.Drawing.Size(792, 13)
         Me.lblStatus.TabIndex = 1
         Me.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'flpVideos
         '
+        Me.flpVideos.AutoScroll = True
         Me.flpVideos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.flpVideos.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpVideos.Location = New System.Drawing.Point(0, 0)
         Me.flpVideos.Name = "flpVideos"
-        Me.flpVideos.Size = New System.Drawing.Size(958, 508)
+        Me.flpVideos.Padding = New System.Windows.Forms.Padding(10)
+        Me.flpVideos.Size = New System.Drawing.Size(792, 536)
         Me.flpVideos.TabIndex = 0
-        Me.flpVideos.WrapContents = False
         '
-        'Panel1
+        'pnlSidebar
         '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
-        Me.Panel1.Controls.Add(Me.pnlSidebarMenu)
-        Me.Panel1.Controls.Add(Me.pnlSidebarHeader)
-        Me.Panel1.Controls.Add(Me.pnlSidebarTopSpacer)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(0, 508)
-        Me.Panel1.TabIndex = 0
+        Me.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
+        Me.pnlSidebar.Controls.Add(Me.pnlSidebarMenu)
+        Me.pnlSidebar.Controls.Add(Me.pnlSidebarHeader)
+        Me.pnlSidebar.Controls.Add(Me.pnlSidebarTopSpacer)
+        Me.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left
+        Me.pnlSidebar.Location = New System.Drawing.Point(0, 0)
+        Me.pnlSidebar.Name = "pnlSidebar"
+        Me.pnlSidebar.Size = New System.Drawing.Size(180, 536)
+        Me.pnlSidebar.TabIndex = 0
         '
         'pnlSidebarMenu
         '
         Me.pnlSidebarMenu.Controls.Add(Me.lblSettings)
-        Me.pnlSidebarMenu.Controls.Add(Me.lblDownloads)
-        Me.pnlSidebarMenu.Controls.Add(Me.lblHistory)
         Me.pnlSidebarMenu.Controls.Add(Me.lblGaming)
         Me.pnlSidebarMenu.Controls.Add(Me.lblMusic)
         Me.pnlSidebarMenu.Controls.Add(Me.lblTrending)
@@ -144,7 +139,7 @@ Partial Class MainForm
         Me.pnlSidebarMenu.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlSidebarMenu.Location = New System.Drawing.Point(0, 46)
         Me.pnlSidebarMenu.Name = "pnlSidebarMenu"
-        Me.pnlSidebarMenu.Size = New System.Drawing.Size(0, 260)
+        Me.pnlSidebarMenu.Size = New System.Drawing.Size(180, 260)
         Me.pnlSidebarMenu.TabIndex = 2
         '
         'lblSettings
@@ -152,39 +147,13 @@ Partial Class MainForm
         Me.lblSettings.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblSettings.Dock = System.Windows.Forms.DockStyle.Top
         Me.lblSettings.ForeColor = System.Drawing.Color.White
-        Me.lblSettings.Location = New System.Drawing.Point(0, 192)
+        Me.lblSettings.Location = New System.Drawing.Point(0, 128)
         Me.lblSettings.Name = "lblSettings"
         Me.lblSettings.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
-        Me.lblSettings.Size = New System.Drawing.Size(0, 32)
+        Me.lblSettings.Size = New System.Drawing.Size(180, 32)
         Me.lblSettings.TabIndex = 6
         Me.lblSettings.Text = "Settings"
         Me.lblSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lblDownloads
-        '
-        Me.lblDownloads.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lblDownloads.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblDownloads.ForeColor = System.Drawing.Color.White
-        Me.lblDownloads.Location = New System.Drawing.Point(0, 160)
-        Me.lblDownloads.Name = "lblDownloads"
-        Me.lblDownloads.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
-        Me.lblDownloads.Size = New System.Drawing.Size(0, 32)
-        Me.lblDownloads.TabIndex = 5
-        Me.lblDownloads.Text = "Downloads"
-        Me.lblDownloads.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lblHistory
-        '
-        Me.lblHistory.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lblHistory.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblHistory.ForeColor = System.Drawing.Color.White
-        Me.lblHistory.Location = New System.Drawing.Point(0, 128)
-        Me.lblHistory.Name = "lblHistory"
-        Me.lblHistory.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
-        Me.lblHistory.Size = New System.Drawing.Size(0, 32)
-        Me.lblHistory.TabIndex = 4
-        Me.lblHistory.Text = "History"
-        Me.lblHistory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblGaming
         '
@@ -194,7 +163,7 @@ Partial Class MainForm
         Me.lblGaming.Location = New System.Drawing.Point(0, 96)
         Me.lblGaming.Name = "lblGaming"
         Me.lblGaming.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
-        Me.lblGaming.Size = New System.Drawing.Size(0, 32)
+        Me.lblGaming.Size = New System.Drawing.Size(180, 32)
         Me.lblGaming.TabIndex = 3
         Me.lblGaming.Text = "Gaming"
         Me.lblGaming.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -207,7 +176,7 @@ Partial Class MainForm
         Me.lblMusic.Location = New System.Drawing.Point(0, 64)
         Me.lblMusic.Name = "lblMusic"
         Me.lblMusic.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
-        Me.lblMusic.Size = New System.Drawing.Size(0, 32)
+        Me.lblMusic.Size = New System.Drawing.Size(180, 32)
         Me.lblMusic.TabIndex = 2
         Me.lblMusic.Text = "Music"
         Me.lblMusic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -220,7 +189,7 @@ Partial Class MainForm
         Me.lblTrending.Location = New System.Drawing.Point(0, 32)
         Me.lblTrending.Name = "lblTrending"
         Me.lblTrending.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
-        Me.lblTrending.Size = New System.Drawing.Size(0, 32)
+        Me.lblTrending.Size = New System.Drawing.Size(180, 32)
         Me.lblTrending.TabIndex = 1
         Me.lblTrending.Text = "Trending"
         Me.lblTrending.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -234,7 +203,7 @@ Partial Class MainForm
         Me.lblHome.Location = New System.Drawing.Point(0, 0)
         Me.lblHome.Name = "lblHome"
         Me.lblHome.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
-        Me.lblHome.Size = New System.Drawing.Size(0, 32)
+        Me.lblHome.Size = New System.Drawing.Size(180, 32)
         Me.lblHome.TabIndex = 0
         Me.lblHome.Text = "Home"
         Me.lblHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -246,7 +215,7 @@ Partial Class MainForm
         Me.pnlSidebarHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlSidebarHeader.Location = New System.Drawing.Point(0, 10)
         Me.pnlSidebarHeader.Name = "pnlSidebarHeader"
-        Me.pnlSidebarHeader.Size = New System.Drawing.Size(0, 36)
+        Me.pnlSidebarHeader.Size = New System.Drawing.Size(180, 36)
         Me.pnlSidebarHeader.TabIndex = 1
         '
         'lblSidebarHeader
@@ -268,13 +237,12 @@ Partial Class MainForm
         Me.pnlSidebarTopSpacer.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlSidebarTopSpacer.Location = New System.Drawing.Point(0, 0)
         Me.pnlSidebarTopSpacer.Name = "pnlSidebarTopSpacer"
-        Me.pnlSidebarTopSpacer.Size = New System.Drawing.Size(0, 10)
+        Me.pnlSidebarTopSpacer.Size = New System.Drawing.Size(180, 10)
         Me.pnlSidebarTopSpacer.TabIndex = 0
         '
         'pnlHeader
         '
         Me.pnlHeader.Controls.Add(Me.pnlHeaderDivider)
-        Me.pnlHeader.Controls.Add(Me.lblSignIn)
         Me.pnlHeader.Controls.Add(Me.btnSearch)
         Me.pnlHeader.Controls.Add(Me.txtSearch)
         Me.pnlHeader.Controls.Add(Me.PictureBox1)
@@ -282,7 +250,7 @@ Partial Class MainForm
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
         Me.pnlHeader.Name = "pnlHeader"
         Me.pnlHeader.Padding = New System.Windows.Forms.Padding(10, 12, 10, 8)
-        Me.pnlHeader.Size = New System.Drawing.Size(958, 70)
+        Me.pnlHeader.Size = New System.Drawing.Size(972, 70)
         Me.pnlHeader.TabIndex = 0
         '
         'pnlHeaderDivider
@@ -291,18 +259,8 @@ Partial Class MainForm
         Me.pnlHeaderDivider.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.pnlHeaderDivider.Location = New System.Drawing.Point(10, 61)
         Me.pnlHeaderDivider.Name = "pnlHeaderDivider"
-        Me.pnlHeaderDivider.Size = New System.Drawing.Size(938, 1)
+        Me.pnlHeaderDivider.Size = New System.Drawing.Size(952, 1)
         Me.pnlHeaderDivider.TabIndex = 4
-        '
-        'lblSignIn
-        '
-        Me.lblSignIn.AutoSize = True
-        Me.lblSignIn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lblSignIn.Location = New System.Drawing.Point(830, 25)
-        Me.lblSignIn.Name = "lblSignIn"
-        Me.lblSignIn.Size = New System.Drawing.Size(40, 13)
-        Me.lblSignIn.TabIndex = 3
-        Me.lblSignIn.Text = "Sign In"
         '
         'btnSearch
         '
@@ -341,6 +299,7 @@ Partial Class MainForm
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(980, 640)
         Me.Name = "MainForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -349,7 +308,7 @@ Partial Class MainForm
         Me.pnlPage.ResumeLayout(False)
         Me.pnlMain.ResumeLayout(False)
         Me.pnlContent.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
+        Me.pnlSidebar.ResumeLayout(False)
         Me.pnlSidebarMenu.ResumeLayout(False)
         Me.pnlSidebarHeader.ResumeLayout(False)
         Me.pnlSidebarHeader.PerformLayout()
@@ -363,16 +322,13 @@ Partial Class MainForm
     Friend WithEvents pnlPage As System.Windows.Forms.Panel
     Friend WithEvents pnlHeader As System.Windows.Forms.Panel
     Friend WithEvents pnlHeaderDivider As System.Windows.Forms.Panel
-    Friend WithEvents lblSignIn As System.Windows.Forms.Label
     Friend WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents txtSearch As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents pnlMain As System.Windows.Forms.Panel
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents pnlSidebar As System.Windows.Forms.Panel
     Friend WithEvents pnlSidebarMenu As System.Windows.Forms.Panel
     Friend WithEvents lblSettings As System.Windows.Forms.Label
-    Friend WithEvents lblDownloads As System.Windows.Forms.Label
-    Friend WithEvents lblHistory As System.Windows.Forms.Label
     Friend WithEvents lblGaming As System.Windows.Forms.Label
     Friend WithEvents lblMusic As System.Windows.Forms.Label
     Friend WithEvents lblTrending As System.Windows.Forms.Label

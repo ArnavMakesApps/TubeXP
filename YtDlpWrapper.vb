@@ -1,39 +1,41 @@
 ﻿Imports System.Diagnostics
-Imports System.Text.RegularExpressions
 
 Public Class YtDlpWrapper
 
-    Public Event StreamReady(ByVal url As String)
+    Public Shared Function GetStream(ByVal videoId As String) As String
 
-    Public Sub GetStream(ByVal videoUrl As String)
+        Try
 
-        Dim psi As New ProcessStartInfo()
+            Dim psi As New ProcessStartInfo
 
-        psi.FileName = "yt-dlp.exe"
+            psi.FileName = "yt-dlp.exe"
 
-        psi.Arguments =
-        "--no-check-certificates -f best[ext=mp4]/best --get-url " & videoUrl
+            psi.Arguments =
+            "-f best[ext=mp4] -g https://www.youtube.com/watch?v=" &
+            videoId
 
-        psi.RedirectStandardOutput = True
-        psi.UseShellExecute = False
-        psi.CreateNoWindow = True
+            psi.UseShellExecute = False
+            psi.RedirectStandardOutput = True
+            psi.CreateNoWindow = True
 
-        Dim p As New Process()
-        p.StartInfo = psi
+            Dim p As Process = Process.Start(psi)
 
-        AddHandler p.OutputDataReceived,
-        Sub(sender, e)
+            Dim url As String = p.StandardOutput.ReadLine()
 
-            If String.IsNullOrEmpty(e.Data) Then Exit Sub
+            p.WaitForExit()
 
-            RaiseEvent StreamReady(e.Data)
+            Debug.WriteLine("Stream URL: " & url)
 
-        End Sub
+            Return url
 
-        p.Start()
+        Catch ex As Exception
 
-        p.BeginOutputReadLine()
+            Debug.WriteLine("yt-dlp error: " & ex.Message)
 
-    End Sub
+        End Try
+
+        Return ""
+
+    End Function
 
 End Class

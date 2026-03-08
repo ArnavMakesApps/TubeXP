@@ -1,100 +1,115 @@
 ﻿Imports System.Net
+Imports System.IO
 Imports System.Text.RegularExpressions
+Imports System.Diagnostics
 
-Public Class YoutubeApi
+Public Class YouTubeVideo
 
-    Private ApiKey As String
+    Public Property VideoId As String
+    Public Property Title As String
+    Public Property Channel As String
+    Public Property Thumbnail As String
 
-    Public Sub New(ByVal key As String)
-
-        ApiKey = key
-
-    End Sub
+End Class
 
 
-    '-----------------------------------
-    ' SEARCH VIDEOS
-    '-----------------------------------
+Public Class YouTubeApi
 
-    Public Function SearchVideos(ByVal query As String) As List(Of VideoInfo)
+    Public Shared Function GetApiKey() As String
 
-        Dim results As New List(Of VideoInfo)
+        Dim path As String =
+        Application.StartupPath & "\apikey.txt"
 
-        Dim url As String =
-        "https://www.googleapis.com/youtube/v3/search" &
-        "?part=snippet&type=video&maxResults=10&q=" &
-        Uri.EscapeDataString(query) &
-        "&key=" & ApiKey
+        Try
 
-        Dim wc As New WebClient()
+            If File.Exists(path) Then
 
-        Dim json As String = wc.DownloadString(url)
+                Dim key As String = File.ReadAllText(path).Trim
 
-        Dim matches = Regex.Matches(json,
-        """videoId"":\s*""(.*?)"".*?""title"":\s*""(.*?)"".*?""channelTitle"":\s*""(.*?)"".*?""description"":\s*""(.*?)""",
-        RegexOptions.Singleline)
+                If key <> "" Then Return key
 
-        For Each m As Match In matches
+            End If
 
-            Dim v As New VideoInfo
 
-            v.VideoId = m.Groups(1).Value
-            v.Title = m.Groups(2).Value
-            v.Channel = m.Groups(3).Value
-            v.Description = m.Groups(4).Value
+            Dim userKey As String =
+            InputBox("Enter your YouTube Data API key:", "API Key Required")
 
-            v.VideoUrl = "https://youtube.com/watch?v=" & v.VideoId
+            If userKey <> "" Then
 
-            results.Add(v)
+                File.WriteAllText(path, userKey)
 
-            If results.Count >= 10 Then Exit For
+                Return userKey
 
-        Next
+            End If
 
-        Return results
+        Catch ex As Exception
+
+            Debug.WriteLine("API key error: " & ex.Message)
+
+        End Try
+
+        Return ""
 
     End Function
 
 
-    '-----------------------------------
-    ' TRENDING VIDEOS
-    '-----------------------------------
 
-    Public Function GetTrending() As List(Of VideoInfo)
+    Public Shared Function SearchVideos(ByVal query As String) As List(Of YouTubeVideo)
 
-        Dim results As New List(Of VideoInfo)
+        Dim videos As New List(Of YouTubeVideo)
 
-        Dim url As String =
-        "https://www.googleapis.com/youtube/v3/videos" &
-        "?part=snippet,statistics&chart=mostPopular" &
-        "&maxResults=10&regionCode=US&key=" & ApiKey
+        Try
 
-        Dim wc As New WebClient()
+            Dim key As String = GetApiKey()
 
-        Dim json As String = wc.DownloadString(url)
+            If key = "" Then Return videos
 
-        Dim matches = Regex.Matches(json,
-        """id"":\s*""(.*?)"".*?""title"":\s*""(.*?)"".*?""channelTitle"":\s*""(.*?)"".*?""viewCount"":\s*""(.*?)""",
-        RegexOptions.Singleline)
+            Dim url As String =
+            "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=" &
+            Uri.EscapeDataString(query) &
+            "&key=" & key
 
-        For Each m As Match In matches
+            Debug.WriteLine("Search URL: " & url)
 
-            Dim v As New VideoInfo
+            Dim wc As New WebClient
+            wc.Headers.Add("User-Agent", "Mozilla/5.0")
 
-            v.VideoId = m.Groups(1).Value
-            v.Title = m.Groups(2).Value
-            v.Channel = m.Groups(3).Value
-            v.Views = m.Groups(4).Value & " views"
+            Dim json As String = wc.DownloadString(url)
 
-            v.VideoUrl = "https://youtube.com/watch?v=" & v.VideoId
+            Dim idMatches = Regex.Matches(json, """videoId"":\s*""(.*?)""")
+            Dim titleMatches = Regex.Matches(json, """title"":\s*""(.*?)""")
+            Dim channelMatches = Regex.Matches(json, """channelTitle"":\s*""(.*?)""")
 
-            results.Add(v)
+            Dim count As Integer =
+            Math.Min(idMatches.Count,
+            Math.Min(titleMatches.Count, channelMatches.Count))
 
-            If results.Count >= 10 Then Exit For
+            For i As Integer = 0 To count - 1
 
-        Next
+                Dim v As New YouTubeVideo
 
-        Return results
+                v.VideoId = idMatches(i).Groups(1).Value
+                v.Title = Regex.Unescape(titleMatches(i).Groups(1).Value)
+                v.Channel = Regex.Unescape(channelMatches(i).Groups(1).Value)
+
+                v.Thumbnail =
+                "https://i.ytimg.com/vi/" &
+                v.VideoId &
+                "/mqdefault.jpg"
+
+                videos.Add(v)
+
+            Next
+
+            Debug.WriteLine("Videos parsed: " & videos.Count)
+
+        Catch ex As Exception
+
+            Debug.WriteLine("Search error: " & ex.Message)
+
+        End Try
+
+        Return videos
 
     End Function
 
