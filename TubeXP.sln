@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Basic Express 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TubeXP", "TubeXP.vbproj", "{CBA07B28-35A4-49B8-AC44-45C0D98F5E6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBA07B28-35A4-49B8-AC44-45C0D98F5E6C}.Debug|x86.ActiveCfg = Debug|x86
+		{CBA07B28-35A4-49B8-AC44-45C0D98F5E6C}.Debug|x86.Build.0 = Debug|x86
+		{CBA07B28-35A4-49B8-AC44-45C0D98F5E6C}.Release|x86.ActiveCfg = Release|x86
+		{CBA07B28-35A4-49B8-AC44-45C0D98F5E6C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
